@@ -1,6 +1,6 @@
 ---
 layout: home
+title: Documentation
 ---
 
-# Documentation
-
+## Interface Documentation
