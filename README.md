@@ -10,7 +10,7 @@ The interface receives connections via tcp/ip to the ip of the master pc with th
 
 **Required fields:**
 
-- Transaction_type: It is the type of transaction, in this case it will be "charge"
+- Transaction_type: It is the type of transaction, in this case it will be "opencash"
 - Datetime_device: Actual Hour
 
 ```
@@ -163,7 +163,7 @@ You can request the last 20 movements of a card by requesting a call with the fo
 
 **Required fields:**
 
-- Transaction_type: It is the type of transaction,in this case it will be "charge".
+- Transaction_type: It is the type of transaction,in this case it will be "movements".
 - Mpl: It is the card number, it must be entered with a ';' as first character.
 
 **Example**
