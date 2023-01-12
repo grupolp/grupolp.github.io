@@ -1,3 +1,9 @@
+---
+layout: page
+title: Interface MC
+permalink: /interface-mc/
+---
+
 # Comunication CA – Interface MC
 
 ## CASHIER-> INTERFACE MC
