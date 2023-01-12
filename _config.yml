@@ -1,9 +1,11 @@
+title: Interface Docs
+author:
+  name: Magneticash
+
 remote_theme: jekyll/minima
 
 minima:
   skin: dark
 
 header_pages:
-  - README.md
-
-title: Interface Docs
+  - interface.md
