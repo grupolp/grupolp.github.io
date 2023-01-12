@@ -12,7 +12,7 @@ The interface receives connections via tcp/ip to the ip of the master pc with th
 
 ### Cashier opening
 
-<p>It fulfills the function of opening the box.Must always be called before making any charges.</p>
+<p>It fulfills the function of opening the box.Must always be called before making any charges and bring the price of the card that you should use in the charge.</p>
 
 **Required fields:**
 
@@ -117,7 +117,7 @@ Brings all the promotions present in the database
         - Amount: How much the client had to pay
         - rate: difference with local currency
 - rate: difference with local currency
-- buycard: How many new cards will you buy
+- buycard: If the card is new it should be set to 1, otherwise it should be 0, this parameter deducts the price of the card from the charge.
 - promotions:Through this field, the bonus, tickets, and quantity will be loaded.It has the following fields:
     1. nombrepromo: It is the name that the promotion has in the database
     2. precio: It is the amount of credit that must be paid to activate the promotion
