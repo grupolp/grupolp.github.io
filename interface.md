@@ -91,13 +91,16 @@ Brings all the promotions present in the database
 
 **Succesful code**
 
-`{“status”:true,“exists”:true,“Balances”:{“tipo”:“N”,“saldo”:1580,“bonus”:100,“tickets”:0,“quantity”:0}`
-
-`{“status”:true,“exists”:false,“msg”:“card is not in database”}`
+```
+{“status”:true,“exists”:true,“Balances”:{“tipo”:“N”,“saldo”:1580,“bonus”:100,“tickets”:0,“quantity”:0}
+{“status”:true,“exists”:false,“msg”:“card is not in database”}
+```
 
 **Error message**
 
-`{“status”:“error”,“msg”:“Rejected card!!!“} --> This error occurs when an invalid card is inserted or without the ";"`
+```
+{“status”:“error”,“msg”:“Rejected card!!!“} --> This error occurs when an invalid card is inserted or without the ";"
+```
 
 ### Charge
 
