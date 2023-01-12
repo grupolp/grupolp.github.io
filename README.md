@@ -40,20 +40,22 @@ Brings all the promotions present in the database
 
 ``` 
 {
-        ”transaction_type”:”promotions”
-    }
+    ”transaction_type”:”promotions”
+}
 ```
 
 **Succesful code**
 
 ```
-[{
+[
+    {
         ”nombrepromo”:”Exact Charge”, “precio”:10, “bonus”:2, “credits”:0,
         ”tickets”:0, “tipopromo”:”Charge+”, “tks_value”: 0,01,
         ”total_gift_value”:2}{“nombrepromo”:Exact Charge”,”precio”:20,
         ”bonus”:4, “credits”:0, “tickets”:0, “tipopromo”:”Charge++”,
         ”tks_value”:0.01, “total_gift_value”:4
-}]
+    }
+]
 ```
 
 **Response fields from this endpoint:**
@@ -83,16 +85,13 @@ Brings all the promotions present in the database
 
 **Succesful code**
 
-```
-{“status”:true,“exists”:true,“Balances”:{“tipo”:“N”,“saldo”:1580,“bonus”:100,“tickets”:0,“quantity”:0}
-{“status”:true,“exists”:false,“msg”:“card is not in database”}
-```
+`{“status”:true,“exists”:true,“Balances”:{“tipo”:“N”,“saldo”:1580,“bonus”:100,“tickets”:0,“quantity”:0}`
+
+`{“status”:true,“exists”:false,“msg”:“card is not in database”}`
 
 **Error message**
 
-```
-{“status”:“error”,“msg”:“Rejected card!!!“} --> This error occurs when an invalid card is inserted or without the ";"
-```
+`{“status”:“error”,“msg”:“Rejected card!!!“} --> This error occurs when an invalid card is inserted or without the ";"`
 
 ### Charge
 
