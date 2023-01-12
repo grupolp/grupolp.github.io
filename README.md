@@ -1,9 +1,11 @@
 # Comunication CA – Interface MC
----
+
 ## CASHIER-> INTERFACE MC
+
 The interface receives connections via tcp/ip to the ip of the master pc with the “Magnetic Cash” system at port 4000. In this example we will connect to IP:10.0.0.2 PORT:4000.
 
 ### Cashier opening
+
 <p>It fulfills the function of opening the box.Must always be called before making any charges.</p>
 
 **Required fields:**
@@ -12,24 +14,22 @@ The interface receives connections via tcp/ip to the ip of the master pc with th
 - Datetime_device: Actual Hour
 
 ```
-
- {
-        “transaction_type”: “opencash”,
-        “cashier_name”:”Autocashier”,
-        “cashier_id”:0, “device_name”: “Autocashier 1”,
-        “datetime_device”: “31/12/2020 10:00:00”
-    }
-
+{
+    “transaction_type”: “opencash”,
+    “cashier_name”:”Autocashier”,
+    “cashier_id”:0, “device_name”: “Autocashier 1”,
+    “datetime_device”: “31/12/2020 10:00:00”
+}
 ```
+
 **Succesful code:**
 
 ```
-
 {“dateopen”:“11/01/23 09:56:56",“status”:“ok”,“card_price”:“100"}
-
 ```
 
 ### Promotions
+
 Brings all the promotions present in the database
 
 **Required fields:**
@@ -43,6 +43,7 @@ Brings all the promotions present in the database
         ”transaction_type”:”promotions”
     }
 ```
+
 **Succesful code**
 
 ```
@@ -54,7 +55,9 @@ Brings all the promotions present in the database
         ”tks_value”:0.01, “total_gift_value”:4
 }]
 ```
+
 **Response fields from this endpoint:**
+
 - nombrepromo”: it is the name of the promotions.
 - precio: It is the amount that must be loaded from credit for the promotion to be applied.
 - tipopromo:tipopromo can have three variants:  
@@ -77,6 +80,7 @@ Brings all the promotions present in the database
     "mpl": ";4610000000050"
 }
 ```
+
 **Succesful code**
 
 ```
@@ -89,6 +93,7 @@ Brings all the promotions present in the database
 ```
 {“status”:“error”,“msg”:“Rejected card!!!“} --> This error occurs when an invalid card is inserted or without the ";"
 ```
+
 ### Charge
 
 **Required fields:**
@@ -120,20 +125,21 @@ Brings all the promotions present in the database
 
 ```
 {
-“opencash”:True,
-“transaction_type”: “charge”,
-“mpl”: “;4190013769052”,
-“msj”: “”,
-“transaction_id”: “0123456786”,
-“charge”: [{“balance_type”: “Pesos”,“amount”: 300,“cashier_name”: “Autocashier”,“cashier_id”: 0,
-“device_name”: “Autocashier 1",“datetime_device”:“09/01/2023 16:00:00",
-“payments”: [{“currency”: “Pesos”,“payment_method”: “efectivo”,“Amount”: 30,“rate”: 1.0 }],
-“total_payment_local_currency”: 300,
-“promotions”:[{“nombrepromo”:“500 da 700”,“precio”:500, “bonus”:200, “credits”:0,“tickets”:0, “tipopromo”:“Charge+”}]}] ,
-“card_price”:100,
-“buycard”:1
+    “opencash”:True,
+    “transaction_type”: “charge”,
+    “mpl”: “;4190013769052”,
+    “msj”: “”,
+    “transaction_id”: “0123456786”,
+    “charge”: [{“balance_type”: “Pesos”,“amount”: 300,“cashier_name”: “Autocashier”,“cashier_id”: 0,
+    “device_name”: “Autocashier 1",“datetime_device”:“09/01/2023 16:00:00",
+    “payments”: [{“currency”: “Pesos”,“payment_method”: “efectivo”,“Amount”: 30,“rate”: 1.0 }],
+    “total_payment_local_currency”: 300,
+    “promotions”:[{“nombrepromo”:“500 da 700”,“precio”:500, “bonus”:200, “credits”:0,“tickets”:0, “tipopromo”:“Charge+”}]}] ,
+    “card_price”:100,
+    “buycard”:1
 }
 ```
+
 **Succesful code**
 
 ```
@@ -151,14 +157,18 @@ Brings all the promotions present in the database
 {“status”:“error”,“msg”:“insufficient money to buy new card”} -> This error occurs when you try to purchase a new card,you entered less than the cost of it
 {“status”:“error”,“msg”:“Rejected card!!!“} -> This error occurs whenan invalid card is inserted or without the ";"
 ```
+
 ### Consultation of last movements
+
 You can request the last 20 movements of a card by requesting a call with the following instruction:
 
 **Required fields:**
+
 - Transaction_type: It is the type of transaction,in this case it will be "charge".
 - Mpl: It is the card number, it must be entered with a ';' as first character.
 
 **Example**
+
 ```
 {
     "transaction_type":"movements",
@@ -180,6 +190,7 @@ You can request the last 20 movements of a card by requesting a call with the fo
     [“09/01/23 14:42:01”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$10<p>“]
 ]
 ```
+
 **Error message**
 
 - [] => It means that I did not find any record of the entered card
