@@ -210,6 +210,7 @@ You can request the last 20 movements of a card by requesting a call with the fo
 
 ```
 [
+    ["20/01/23 09:20:40","AutoCashAutocashier 1","Debit","Credits","<p id=red>$-200<p>"],
     [“11/01/23 09:38:55”,“AutoCashAutocashier 1",“Charge”,“Credits”,“<p id=green>$200<p>“],
     [“11/01/23 09:00:41”,“AutoCashAutocashier 1",“Charge”,“Credits”,“<p id=green>$200<p>“],
     [“10/01/23 09:52:51”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$940<p>“],
