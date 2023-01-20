@@ -129,9 +129,10 @@ Brings all the promotions present in the database
         - Charge+: You have to charge exactly the amount specified for the application of the promotion.
         - Charge++: You must charge the specified amount or more.
 
-**Example**
+**Example Charge with promotions**
 
 ```
+
 {
     “opencash”:True,
     “transaction_type”: “charge”,
@@ -147,6 +148,25 @@ Brings all the promotions present in the database
     “buycard”:1
 }
 ```
+
+**Example Debit**
+
+```
+{"opencash":True,
+"transaction_type": "charge",
+"mpl": ;4190013769052,
+"transaction_id": "0123456788",
+"charge": [{"balance_type": "Pesos","amount": 0,"cashier_name": "Autocashier","cashier_id": 0,
+"device_name": "Autocashier 1","datetime_device":"09/01/2023 16:00:00",
+"payments": [{"currency": "quantity","payment_method": "Tarjeta Credito","Amount": 20,"rate": 1.0 }],
+"total_payment_local_currency": 20,
+"promotions": [{"nombrepromo":"Debit","precio":0,"bonus":0,"credits":-200,"tickets":0,"tipopromo":"Charge+","tks_value":0.01,"total_gift_value":0}]}],
+"card_price":300,"buycard":0}
+
+```
+
+
+
 
 **Succesful code**
 
