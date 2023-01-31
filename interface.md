@@ -149,43 +149,6 @@ Brings all the promotions present in the database
 }
 ```
 
-**Example Debit**
-
-```
-{"opencash":True,
-"transaction_type": "charge",
-"mpl": ;4190013769052,
-"transaction_id": "0123456788",
-"charge": [{"balance_type": "Pesos","amount": 0,"cashier_name": "Autocashier","cashier_id": 0,
-"device_name": "Autocashier 1","datetime_device":"09/01/2023 16:00:00",
-"payments": [{"currency": "quantity","payment_method": "Tarjeta Credito","Amount": 20,"rate": 1.0 }],
-"total_payment_local_currency": 20,
-"promotions": [{"nombrepromo":"Debit","precio":0,"bonus":0,"credits":-200,"tickets":0,"tipopromo":"Charge+","tks_value":0.01,"total_gift_value":0}]}],
-"card_price":300,"buycard":0}
-
-```
-
-
-
-
-**Succesful code**
-
-```
-{
-    “status”:”ok”,
-    “charge_time”:”11/01/23 09:38:55”
-}
-```
-
-**Error message**
-
-```
-{“status”:“error”,“msg”:“opencash not in json”} -> This error occurs when trying to load without opening
-{“status”:”error”} -> This error occurs when any field ofthe request body is missing.
-{“status”:“error”,“msg”:“insufficient money to buy new card”} -> This error occurs when you try to purchase a new card,you entered less than the cost of it
-{“status”:“error”,“msg”:“Rejected card!!!“} -> This error occurs whenan invalid card is inserted or without the ";"
-```
-
 ### Consultation of last movements
 
 You can request the last 20 movements of a card by requesting a call with the following instruction:
