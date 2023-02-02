@@ -186,3 +186,33 @@ You can request the last 20 movements of a card by requesting a call with the fo
 **Error message**
 
 - [] => It means that I did not find any record of the entered card
+
+### Debit
+
+Allows you to debit credit
+
+**Required fields:**
+
+- Transaction_type: It is the type of transaction,in this case it will be "movements".
+- Mpl: It is the card number, it must be entered with a ';' as first character.
+- debit: In this field you will define the card debit data
+
+**Example**
+
+```
+{"transaction_type": "debit","mpl": ";8350009433897","vmpl": "","msj": "","transaction_id": "","debit":[{"balance_type": "usd","amount": 15.25,"device_name": "store1"}]}
+
+```
+
+**Succesful code**
+
+```
+{"status":"ok","debit_time":"02-Feb-23 15:39:42"}
+
+```
+
+**Error message**
+
+```
+{"status":"error","debit_time":"02-Feb-23 15:39:42"}
+```
