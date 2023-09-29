@@ -13,7 +13,8 @@ The interface receives connections via tcp/ip to the ip of the master pc with th
 ### Cashier opening
 
 <p>It fulfills the function of opening the box.Must always be called before making any charges and bring the price of the card that you should use in the charge.</p>
-
+>>To load boxes of electronic cards, you must always send the "id_date"<<
+                                                                           
 **Required fields:**
 
 - Transaction_type: It is the type of transaction, in this case it will be "opencash"
@@ -31,7 +32,7 @@ The interface receives connections via tcp/ip to the ip of the master pc with th
 **Succesful code:**
 
 ```
-{“dateopen”:“11/01/23 09:56:56",“status”:“ok”,“card_price”:“100"}
+{"dateopen":"11/01/23 09:56:56","status":"ok","id_date": "cashier12023-09-28 19:04:26","card_price":"100"}
 ```
 
 ### Promotions
@@ -106,7 +107,7 @@ Brings all the promotions present in the database
 
 **Required fields:**
 
-- opencash : It is mandatory to open the box, before carrying out a load, so this field should always be TRUE.
+- opencash : It is mandatory to open the box, before carrying out a load, so this field should always be id_date.
 - transaction_type: It is the type of transaction, in this case it will be "charge".
 - Mpl: It is the card number, it must be entered with a ';'as first character.
 - Charge: It is an array where an object with the following fields will be found:
@@ -134,7 +135,7 @@ Brings all the promotions present in the database
 ```
 
 {
-    “opencash”:True,
+    “opencash”:"cashier12023-09-28 19:04:26",
     “transaction_type”: “charge”,
     “mpl”: “;4190013769052”,
     “msj”: “”,
@@ -172,15 +173,7 @@ You can request the last 20 movements of a card by requesting a call with the fo
 **Succesful code**
 
 ```
-[
-    ["20/01/23 09:20:40","AutoCashAutocashier 1","Debit","Credits","<p id=red>$-200<p>"],
-    [“11/01/23 09:38:55”,“AutoCashAutocashier 1",“Charge”,“Credits”,“<p id=green>$200<p>“],
-    [“11/01/23 09:00:41”,“AutoCashAutocashier 1",“Charge”,“Credits”,“<p id=green>$200<p>“],
-    [“10/01/23 09:52:51”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$940<p>“],
-    [“10/01/23 09:32:01”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$400<p>“],
-    [“09/01/23 16:40:20”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$30<p>“],
-    [“09/01/23 14:42:01”,“AutoCashcajeroac1",“Charge++“,”Win(25 Bns)“,”<p id=green>$10<p>“]
-]
+[["2023-09-26 13:07:45", "Autocashier", "charge", "credits", "10.00"], ["2023-09-26 13:07:46", "cash_debit", "debit", "credits", "-1.50"]]
 ```
 
 **Error message**
@@ -216,3 +209,90 @@ Allows you to debit credit
 ```
 {"status":"error","debit_time":"02-Feb-23 15:39:42"}
 ```
+
+### Vouchers List
+
+Show all voucher in list
+
+**Required fields:**
+
+- Transaction_type: It is the type of transaction,in this case it will be "listvouchers".
+
+**Example**
+
+```
+{"transaction_type":"listvouchers"}
+
+```
+
+**Succesful code**
+
+```
+[{"id": "1", "name": "Voucher 1", "description": "", "expiration_days_default": "30", "is_active": "1", "deleted": "0", "price": "10.50"}, {"id": "2", "name": "Voucher 2", "description": "", "expiration_days_default": "45", "is_active": "1", "deleted": "0", "price": "15.75"}, {"id": "3", "name": "Voucher 3", "description": "", "expiration_days_default": "25", "is_active": "1", "deleted": "0", "price": "8.75"}]
+
+```
+
+**Error message**
+
+
+### Get Vouchers Cards
+
+Show all voucher in cards
+
+**Required fields:**
+
+- Transaction_type: It is the type of transaction,in this case it will be "listvouchers".
+
+**Example**
+
+```
+{"transaction_type":"getvouchers","mpl": ";7370013852930"}
+
+```
+
+**Succesful code**
+
+```
+{"status": true, "vouchers": [{"mpl": ";7370013852930", "vouchers_id": "1", "expiration_date": "2023-12-31 23:59:59", "quantity": "5", "voucher_name": "Voucher 1", "price": "10.5"}, {"mpl": ";7370013852930", "vouchers_id": "2", "expiration_date": "2023-12-31 23:59:59", "quantity": "3", "voucher_name": "Voucher 2", "price": "15.75"}]}
+
+```
+
+**Error message**
+
+```
+{"status": error, "vouchers": []}
+```
+
+### Vouchers Charge
+
+Charge vouchers for cards
+
+**Required fields:**
+
+- Transaction_type: It is the type of transaction,in this case it will be "chargevoucher".
+- mpl: card number.
+- buycard: 1 for new card, 0 for client card.
+- charge:list of voucher object.
+- id_date: open cashier date id.
+
+**Example**
+
+```
+{"cashier_id": 1,"mpl": ";7370013852930","buycard": 0,"transaction_type":"chargevouchers","cashier_name": "nico2","charge": [{"name": "Daytona super voucher", "amount": 1, "payAmount":100}],"device_name": "front-magneticash","cardPrice":0,"id_date": "cashier12023-09-28 19:04:26.988427"}
+
+```
+
+**Succesful code**
+
+```
+{"status": true, "vouchers": [{"mpl": ";4190013769052", "vouchers_id": "1", "expiration_date": "2023-10-28 20:14:59", "quantity": "4", "voucher_name": "Daytona super voucher", "price": "100.0"}]}
+
+```
+
+**Error message**
+
+```
+{"status": false, "vouchers": []}
+```
+
+
