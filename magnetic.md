@@ -1,8 +1,3 @@
----
-layout: page
-title: magnetic
-permalink: /magnetic/
----
 
 # Api Master
 
