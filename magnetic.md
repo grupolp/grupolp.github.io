@@ -1,3 +1,9 @@
+---
+layout: page
+title: magnetic
+permalink: /magnetic.md/
+---
+
 # Api Master
 
 ## Endpoints
