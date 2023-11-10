@@ -1,7 +1,7 @@
 ---
 layout: page
 title: magnetic
-permalink: /magnetic.md/
+permalink: /magnetic/
 ---
 
 # Api Master
