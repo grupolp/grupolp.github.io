@@ -11,15 +11,14 @@ Cumple la funcion de generar el token de autorizacion del usuario, el mismo tien
 
 - EJEMPLO DE BODY
 
-`
+```
       {
         "username": "mcash",
         "password": "mcash",
         "device_id": "e0d55eb1300c",
         "name": "CASHIER"
         }
-`
-
+```
 El username y el password siempre seran "mcash", sin embargo el device_id debera ser obtenido del disposivo y este se utilizara para la generacion del token. A su vez existen distintos tipos de licencias que deberan ser señaladas en el campo "name". Estas seran "CASHIER", "REDEMPTION" Y "AUTOCASHIER".
 
 "CASHIER": Es el tipo de licencia que se utiliza para habilitar el cajero.
@@ -31,14 +30,13 @@ El username y el password siempre seran "mcash", sin embargo el device_id debera
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "Authorization": "4782f0ea98485bf13ff23c87e24bbf5b",
     "code": 200
 }
-`
-
+```
 ### Slave Ping
 
 URL = /slave-ping
@@ -47,13 +45,13 @@ Cumple la funcion de mantener vivo el token generado por el slave-login, debera 
 
 - EJEMPLO DE BODY
 
-`
+```
 {
     "Authorization": "4782f0ea98485bf13ff23c87e24bbf5b",
     "device_id": "e0d55eb1300c",
     "type":"CASHIER"
 }
-`
+```
 
 "Authorization": Es el token generado por el slave-login
 
@@ -63,25 +61,23 @@ Cumple la funcion de mantener vivo el token generado por el slave-login, debera 
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": "2023-10-30T17:50:05.035186",
     "code": 200,
     "internalCode": "001"
 }
-`
-
+```
 ## A considerar
 
 Desde este punto a cada endpoint al que se le solicite una peticion sera necesario incluirle un header con las siguientes caracteristicas:
 
-`
+```
 {
     "Authorization": "4782f0ea98485bf13ff23c87e24bbf5b CASHIER"
 }
-`
-
+```
 El mismo incluye el token de autorizacion generado, ademas del tipo de licencia para el que fue otorgado.
 
 
@@ -93,14 +89,14 @@ Cumple la funcion de Logueo de usuario, a su vez tambien es el encargado de real
 
 - EJEMPLO DE BODY
 
-`
+```
 {
     "username":"usuario",
     "password":"contraseña",
     "app":"CASHIER",
     "device_id":"e0d55eb1300c"
 }
-`
+```
 
 "username": Es el nombre de usuario
 
@@ -112,7 +108,7 @@ Cumple la funcion de Logueo de usuario, a su vez tambien es el encargado de real
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": {
@@ -143,7 +139,7 @@ Cumple la funcion de Logueo de usuario, a su vez tambien es el encargado de real
     ],
     "code": 200
 }
-`
+```
 
 "data": En este apartado se incluiran todos los permisos del usuario, en caso de contar con alguno de estos permisos en False, notaras que no se te permitira el acceso a la carga del mismo, esto puede configurarse desde el backoffice del operador, o desde uno de sus respectivos endpoints.
 
@@ -157,10 +153,10 @@ Este endpoint de tipo get es el encargado de buscar la tarjeta en la base de dat
 
 - EJEMPLO DE URL
 
-`
-/getCard/4720013852718
-`
 
+```
+/getCard/4720013852718
+```
 - EJEMPLO DE RESPUESTA
 
 `
@@ -202,13 +198,13 @@ Aclaracion: Devuelve 0 para False y 1 para True.
 
 - EJEMPLO DE URL
 
-`
-/getDefault
-`
 
+```
+/getDefault
+```
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": {
@@ -243,7 +239,7 @@ Aclaracion: Devuelve 0 para False y 1 para True.
     },
     "code": 200
 }
-`
+```
 
 "VouchersOnOff": Es la habilitacion de la carga de vouchers.
 
@@ -286,7 +282,7 @@ Este endpoint es el encargado de realizar las cargas de tarjetas, es importante 
 
 - EJEMPLO DE BODY
 
-`
+```
 {
 "cashier_id": 1,
 "cashier_name": "Nico",
@@ -300,7 +296,7 @@ Este endpoint es el encargado de realizar las cargas de tarjetas, es importante 
 "transaction_type": "charge",
 "vmpl": "4720013852718"
 }
-`
+```
 
 "cashier_id": Es el id del cajero
 
@@ -328,7 +324,7 @@ Este endpoint es el encargado de realizar las cargas de tarjetas, es importante 
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": {
@@ -354,7 +350,7 @@ Este endpoint es el encargado de realizar las cargas de tarjetas, es importante 
     "api_datetime": "2023/11/10 11:00:48",
     "code": 200
 }
-`
+```
 
 "data": En este apartado se encuentran los datos actualizados de la tarjeta, luego de realizada la carga.
 
@@ -368,15 +364,15 @@ Endpoint de tipo get que devuelve los registros de transacciones de una tarjeta.
 
 -- EJEMPLO DE URL
 
-`
+```
 /info/4880013852149?page=1
-`
+```
 
 Se le brinda el numero de la tarjeta en la url y la pagina.
 
 -- EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": {
@@ -426,7 +422,7 @@ Se le brinda el numero de la tarjeta en la url y la pagina.
     },
     "code": 200
 }
-`
+```
 
 "Historial": Devuelve el listado de registros relacionado a la tarjeta
 
@@ -438,13 +434,13 @@ Endpoint de tipo get, encargado de calcular el total de dinero ingresado en una 
 
 - EJEMPLO DE URL
 
-`
+```
 /cashierInfo/eliasC08-02-2023_09:32:42
-`
+```
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "Cashier": "Nico",
     "Total": 31685.43,
@@ -457,7 +453,7 @@ Endpoint de tipo get, encargado de calcular el total de dinero ingresado en una 
     "TicketsCharge": 2300,
     "TicketsDischarge": 0
 }
-`
+```
 
 "Cashier": Nombre del cajero
 
@@ -487,7 +483,7 @@ Endpoint encargado de realizar el canjeo de tickets por productos seleccionados,
 
 - EJEMPLO DE BODY
 
-`
+```
 {
     "totalTK":100,
     "select":[";3870005642136"],
@@ -498,7 +494,7 @@ Endpoint encargado de realizar el canjeo de tickets por productos seleccionados,
     "id_date":"nico201-06-2023_12:33:05",
     "tid":"505050.101050"
 }
-`
+```
 
 "totalTK": Es la cantidad de tickets que tiene la tarjeta al momento de realizar el canjeo
 
@@ -518,14 +514,14 @@ Endpoint encargado de realizar el canjeo de tickets por productos seleccionados,
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": "Succesfull",
     "code": 200,
     "internalCode": "001"
 }
-`
+```
 
 ### Language
 
@@ -533,20 +529,20 @@ Endpoint Encargado de setear el idioma en el que se mostraran las respuestas de 
 
 - EJEMPLO DE URL
 
-`
+```
 /language/en
-`
+```
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": "Succesfull",
     "code": 200,
     "internalCode": "001"
 }
-`
+```
 
 ### Node
 
@@ -558,13 +554,13 @@ Endpoint de tipo get encargado de devolver todos los vouchers disponibles en el 
 
 - EJEMPLO DE URL
 
-`
+```
 /vouchers
-`
+```
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": [
@@ -600,7 +596,7 @@ Endpoint de tipo get encargado de devolver todos los vouchers disponibles en el 
     "code": 200,
     "internalCode": "001"
 }
-`
+```
 
 ### Get Vouchers Por Tarjeta
 
@@ -608,15 +604,15 @@ Endpoint tipo get encargado de devolver el listado de vouchers asociados a una t
 
 - EJEMPLO DE URL
 
-`
+```
 /voucher/;5960013775785
-`
+```
 
 recibe por parametro el numero de tarjeta.
 
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": [
@@ -631,7 +627,7 @@ recibe por parametro el numero de tarjeta.
     "code": 200,
     "internalCode": "001"
 }
-`
+```
 
 ### post Voucher
 
@@ -639,7 +635,7 @@ URL = /voucher/;5150013852908
 
 Endpoint encargado de la carga de vouchers, debe haberse ejecutado el getDefaults, y el userLogin para su utilizacion.
 
-`
+```
 {
     "cashier_id": 1,
     "cashier_name": "Nico",
@@ -648,7 +644,7 @@ Endpoint encargado de la carga de vouchers, debe haberse ejecutado el getDefault
     "cardPrice":0,
     "id_date": "eliasC08-02-2023_09:32:42"
 }
-`
+```
 
 "cashier_id":Es el id del cajero
 
@@ -671,7 +667,7 @@ Endpoint encargado de la carga de vouchers, debe haberse ejecutado el getDefault
 - EJEMPLO DE RESPUESTA
 
 
-`
+```
 {
     "status": "ok",
     "data": [
@@ -688,7 +684,7 @@ Endpoint encargado de la carga de vouchers, debe haberse ejecutado el getDefault
     "code": 200,
     "internalCode": "001"
 }
-`
+```
 
 
 
