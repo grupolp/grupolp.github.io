@@ -160,7 +160,7 @@ Este endpoint de tipo get es el encargado de buscar la tarjeta en la base de dat
 ```
 - EJEMPLO DE RESPUESTA
 
-`
+```
 {
     "status": "ok",
     "data": {
@@ -185,7 +185,7 @@ Este endpoint de tipo get es el encargado de buscar la tarjeta en la base de dat
     "api_datetime": "2023/11/10 09:55:33",
     "code": 200
 }
-`
+```
 
 "data": En este apartado se muestran todos los atributos y saldos de la tarjeta
 
